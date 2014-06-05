@@ -235,7 +235,7 @@ public class SynchronizedQueue {
 
             // TODO - you fill in here to interrupt the threads.
             consumer.interrupt();
-            producer.interrupt(); 
+            producer.interrupt();
             
             // TODO - you fill in here to wait for the threads to
             // exit.
