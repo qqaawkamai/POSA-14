@@ -24,12 +24,15 @@ class SimpleAtomicLong
      * The ReentrantReadWriteLock used to serialize access to mValue.
      */
     // TODO - add the implementation
-
+    private final ReentrantReadWriteLock mRWLock = new ReentrantReadWriteLock();
+    
     /**
      * Creates a new SimpleAtomicLong with the given initial value.
      */
     public SimpleAtomicLong(long initialValue) {
-        // TODO - you fill in here
+        
+    	// TODO - you fill in here
+    	mValue = initialValue;
     }
 
     /**
@@ -38,7 +41,14 @@ class SimpleAtomicLong
      * @returns The current value
      */
     public long get() {
-        // TODO - you fill in here
+        
+    	// TODO - you fill in here
+        mRWLock.readLock().lock();
+        try{
+        	return mValue;
+        } finally {
+        	mRWLock.readLock().unlock();
+        }
     }
 
     /**
@@ -47,7 +57,14 @@ class SimpleAtomicLong
      * @returns the updated value
      */
     public long decrementAndGet() {
-        // TODO - you fill in here
+        
+    	// TODO - you fill in here
+        mRWLock.writeLock().lock();
+        try{
+        	return --mValue;
+        } finally {
+        	mRWLock.writeLock().unlock();
+        }
     }
 
     /**
@@ -56,7 +73,14 @@ class SimpleAtomicLong
      * @returns the previous value
      */
     public long getAndIncrement() {
-        // TODO - you fill in here
+        
+    	// TODO - you fill in here
+        mRWLock.writeLock().lock();
+        try{
+        	return mValue++;
+        } finally {
+        	mRWLock.writeLock().unlock();
+        }
     }
 
     /**
@@ -65,7 +89,14 @@ class SimpleAtomicLong
      * @returns the previous value
      */
     public long getAndDecrement() {
-        // TODO - you fill in here
+        
+    	// TODO - you fill in here
+        mRWLock.writeLock().lock();
+        try{
+        	return mValue--;
+        } finally {
+        	mRWLock.writeLock().unlock();
+        }
     }
 
     /**
@@ -74,7 +105,14 @@ class SimpleAtomicLong
      * @returns the updated value
      */
     public long incrementAndGet() {
-        // TODO - you fill in here
+        
+    	// TODO - you fill in here
+        mRWLock.writeLock().lock();
+        try{
+        	return ++mValue;
+        } finally {
+        	mRWLock.writeLock().unlock();
+        }
     }
 }
 
