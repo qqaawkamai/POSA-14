@@ -30,6 +30,7 @@ public class PingPongRight {
      *        and "pong" to the console display.
      */
     public static class PlayPingPongThread extends Thread {
+
         /**
          * Constants to distinguish between ping and pong
          * SimpleSemaphores, if you choose to use an array of
