@@ -19,7 +19,7 @@ public class AndroidPlatformStrategy extends PlatformStrategy
 {	
     /** TextViewVariable. */
     private TextView mTextViewOutput;
-	
+
     /** Activity variable finds gui widgets by view. */
     private WeakReference<Activity> mActivity;
 
