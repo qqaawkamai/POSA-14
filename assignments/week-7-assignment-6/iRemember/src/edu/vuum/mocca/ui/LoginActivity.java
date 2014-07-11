@@ -26,7 +26,7 @@ public class LoginActivity extends StoryActivityBase{
 	EditText mPassword;
 	
 	// Make sure we use maximum security to store login credentials
-	static final int MAX_SECURITY = Integer.MAX_VALUE;
+	static final int MAX_SECURITY = StorageUtilities.SECURITY_PRIVATE;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class LoginActivity extends StoryActivityBase{
 	public static File getLoginFile (Context context) {
 		return StorageUtilities.getOutputMediaFile(context, 	// Line 48
 				StorageUtilities.MEDIA_TYPE_TEXT, 
-				MAX_SECURITY, 
+				MAX_SECURITY, // changed line 29
 				"login.txt");
 	}
 	
@@ -76,31 +76,6 @@ public class LoginActivity extends StoryActivityBase{
 		return 0;
 	}
 
-	/**
-	 * Returns the last password input into this activity, or null if one has not been set
-	 */
-	public static String getPassword(Context context) {
-		// Get the output file for the login information
-		File loginFile = getLoginFile(context);
-		
-		String out = null;
-		
-		// If it already exists, read the login information from the file and display it
-		if (loginFile != null && loginFile.exists()) {
-			try {
-				Scanner sc = new Scanner(loginFile);	// Line 91
-				sc.nextLine();
-				out = sc.nextLine();
-				sc.close();
-				return out;
-			} catch (Exception e) {
-				// This should never really happen
-				Log.e(LOG_TAG, "Unable to get password from file.");
-			}
-		}
-
-		return out;
-	}
 
 	
 	/**
@@ -112,8 +87,8 @@ public class LoginActivity extends StoryActivityBase{
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(loginFile));	// Line 113
 			writer.write(mLoginId.getText().toString());
-			writer.newLine();
-			writer.write(mPassword.getText().toString());
+//			writer.newLine();
+//			writer.write(mPassword.getText().toString());
 			writer.newLine();
 			writer.close();
 		} catch (Exception e) {
